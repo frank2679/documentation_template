@@ -4,7 +4,7 @@
 #ifndef _CONTEXT_H_
 #define _CONTEXT_H_
 
-#include "database/database.h"
+#include "component/operator_database.h"
 
 class sublasContext {
   public:
@@ -15,13 +15,14 @@ class sublasContext {
     sublasContext(sublasContext &&) = delete;
 
   public:
-    template <typename T_LAYER, typename T_MODE, typename T_ALGO,
-              typename... ARGS>
-    sublasStatus_t Execute(const T_LAYER &layer, const T_MODE &mode,
+    template <typename T_OP, typename T_DATA, typename T_ALGO, typename... ARGS>
+    sublasStatus_t Execute(const T_OP &op, const T_DATA &data_type,
                            const T_ALGO &algo, ARGS... args) {
-        return DataBase::GetOperatorDatabase()->operator()(layer, mode, algo,
-                                                           args...);
+        return OperatorDatabase::GetOperatorDatabase()->operator()(
+            op, data_type, algo, args...);
     }
+
+    // TBD: set stream
 };
 
 typedef sublasContext *sublasHandle_t;

@@ -4,8 +4,9 @@
 #ifndef _CONTEXT_API_H_
 #define _CONTEXT_API_H_
 
-#include "base/base.h"
 #include "handle.h"
+
+#include "base/base.h"
 
 SUBLAS_API sublasStatus_t sublasCreate(sublasHandle_t *handle);
 

@@ -25,6 +25,12 @@ struct Core {
         if (LauncherDict<T, ARGS...>().end() != item) {
             auto ret = item->second(args...);
             return ret;
+        } else {
+            // TBD: to_string, sizeof..., throw where catch?
+            std::string msg = op_name_ +
+                              std::string(": Operator does not exist. ") +
+                              std::to_string(sizeof...(args));
+            throw SublasException(msg);
         }
     }
 

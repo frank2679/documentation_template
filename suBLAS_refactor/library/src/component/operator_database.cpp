@@ -1,18 +1,18 @@
+#include "operator_database.h"
+
 #include <iostream>
 
-#include "database.h"
-
 // !!! need this define
-DataBase *DataBase::op_database_ = nullptr;
+OperatorDatabase *OperatorDatabase::op_database_ = nullptr;
 
-DataBase *DataBase::GetOperatorDatabase() {
+OperatorDatabase *OperatorDatabase::GetOperatorDatabase() {
     if (nullptr == op_database_) {
-        op_database_ = new DataBase();
+        op_database_ = new OperatorDatabase();
     }
     return op_database_;
 }
 
-void DataBase::DestroyOperatorDatabase() {
+void OperatorDatabase::DestroyOperatorDatabase() {
     if (nullptr != op_database_) {
         delete op_database_;
         op_database_ = nullptr;
@@ -27,9 +27,9 @@ std::string MakeOperatorName(const std::string &op_name,
 }
 
 std::shared_ptr<Core>
-DataBase::registerOperator(const std::string &op_name,
-                           const std::string &data_type_name,
-                           const std::string &core_name) {
+OperatorDatabase::RegisterOperator(const std::string &op_name,
+                                   const std::string &data_type_name,
+                                   const std::string &core_name) {
 
     std::string operator_name =
         MakeOperatorName(op_name, data_type_name, core_name);

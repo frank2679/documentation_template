@@ -15,7 +15,8 @@ sublasStatus_t gemmApiTemplate(sublasHandle_t handle, sublasOperation_t transA,
                                const float *B, int ldb, const float *beta,
                                float *C, int ldc, const char api_function_[],
                                const char api_name_[]) {
-    return handle->Execute(std::string("Convfwd"), std::string("Cross"),
-                           std::string("Direct"), m);
+    // TBD: how to set data type according to T
+    return handle->Execute(std::string("GEMM"), std::string("Float"),
+                           std::string("64X512X128"), m);
 }
 #endif

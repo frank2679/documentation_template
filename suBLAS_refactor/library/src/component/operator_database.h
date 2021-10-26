@@ -3,37 +3,35 @@
 #include <string>
 
 #include "base/base.h"
-#include "core/core.h"
+#include "core.h"
 
 std::string MakeOperatorName(const std::string &op_name,
                              const std::string &data_type_name,
                              const std::string &algo_name);
 
-class DataBase {
+class OperatorDatabase {
     typedef std::map<std::string, std::shared_ptr<Core>> CoreDictionary;
     // typedef std::map<std::string, CoreDictionary> DatatypeDictionary;
     // typedef std::map<std::string, DatatypeDictionary> OperatorDictionary;
 
   private:
-    DataBase(){};
-    ~DataBase(){};
+    OperatorDatabase(){};
+    ~OperatorDatabase(){};
 
     // why this op_database_? different with operator_database_
-    static DataBase *op_database_;
+    static OperatorDatabase *op_database_;
 
   public:
-    static DataBase *GetOperatorDatabase();
+    static OperatorDatabase *GetOperatorDatabase();
 
     static void DestroyOperatorDatabase();
 
-    std::shared_ptr<Core> registerOperator(const std::string &op_name,
+    std::shared_ptr<Core> RegisterOperator(const std::string &op_name,
                                            const std::string &data_type_name,
                                            const std::string &core_name);
 
-    template <typename T_LAYER, typename T_MODE, typename T_ALGO,
-              typename... ARGS>
-    sublasStatus_t operator()(const T_LAYER &op_name,
-                              const T_MODE &data_type_name,
+    template <typename T_OP, typename T_DATA, typename T_ALGO, typename... ARGS>
+    sublasStatus_t operator()(const T_OP &op_name, const T_DATA &data_type_name,
                               const T_ALGO &core_name, ARGS... args) {
 
         std::shared_ptr<Core> result;
