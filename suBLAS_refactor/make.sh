@@ -12,7 +12,7 @@ fi
 
 # -e enable \n escape char
 echo -e "\n-------------->> start running ..."
-./src/hello
+./library/src/hello
 status=$?
 
 if [ $status -eq 0 ] 

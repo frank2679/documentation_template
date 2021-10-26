@@ -14,12 +14,12 @@ static auto kOpRegisterConvfwdCrossDirect =
         -> RegisterFunction(ConvfwdCrossDirect::Instance()->Compute());
 
 // TBD: only lamdba could be used?
-std::function<int(int a)> ConvfwdCrossDirect::Compute() {
+std::function<sublasStatus_t(int a)> ConvfwdCrossDirect::Compute() {
     // std::cout << "hello ConvfwdCrossDirect, input value: " << a << std::endl;
     // return 0;
     return [](int a) {
         std::cout << "hello ConvfwdCrossDirect, input value: " << a
                   << std::endl;
-        return 0;
+        return SUBLAS_STATUS_SUCCESS;
     };
 }

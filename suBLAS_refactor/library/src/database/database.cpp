@@ -20,18 +20,19 @@ void DataBase::DestroyOperatorDatabase() {
 }
 
 // operator name is the ID of real kernel
-std::string MakeOperatorName(const std::string &layer_name,
-                             const std::string &mode_name,
+std::string MakeOperatorName(const std::string &op_name,
+                             const std::string &data_type_name,
                              const std::string &core_name) {
-    return std::move(layer_name + "#" + mode_name + "#" + core_name);
+    return std::move(op_name + "#" + data_type_name + "#" + core_name);
 }
 
-std::shared_ptr<Core> DataBase::registerOperator(const std::string &layer_name,
-                                                 const std::string &mode_name,
-                                                 const std::string &core_name) {
+std::shared_ptr<Core>
+DataBase::registerOperator(const std::string &op_name,
+                           const std::string &data_type_name,
+                           const std::string &core_name) {
 
     std::string operator_name =
-        MakeOperatorName(layer_name, mode_name, core_name);
+        MakeOperatorName(op_name, data_type_name, core_name);
     auto iter = operator_database_.find(operator_name);
     if (operator_database_.end() == iter) {
         auto item = operator_database_.insert(
@@ -44,21 +45,4 @@ std::shared_ptr<Core> DataBase::registerOperator(const std::string &layer_name,
                   << operator_name << std::endl;
         return iter->second;
     }
-}
-
-int DataBase::operate(const std::string &layer_name,
-                      const std::string &mode_name,
-                      const std::string &core_name) {
-    std::shared_ptr<Core> result;
-    std::string operator_name =
-        MakeOperatorName(layer_name, mode_name, core_name);
-    auto iter = operator_database_.find(operator_name);
-    if (operator_database_.end() != iter) {
-        result = iter->second;
-    } else {
-        std::cout << "No such operator: " << operator_name << std::endl;
-        return 1;
-    }
-
-    return result->operate(5);
 }

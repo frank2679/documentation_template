@@ -1,6 +1,8 @@
 #include <functional>
 #include <memory>
 
+#include "base/base.h"
+
 class ConvfwdCrossDirect {
   public:
     ConvfwdCrossDirect(){};
@@ -16,5 +18,5 @@ class ConvfwdCrossDirect {
     }
 
   public:
-    std::function<int(int a)> Compute(); // TBD, transfer param
+    std::function<sublasStatus_t(int a)> Compute(); // TBD, transfer param
 };

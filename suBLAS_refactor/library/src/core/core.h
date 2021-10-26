@@ -7,12 +7,12 @@
 #include <string>
 
 struct Core {
-    typedef std::map<std::string, std::function<int(int)>> LauncherDictionary;
     Core(){};
     Core(const std::string &op_name) : op_name_(op_name){};
     ~Core(){};
-    Core *RegisterFunction(std::function<int(int)> func) {
-        auto item = LauncherDict().insert({op_name_, func});
+    template <typename T, typename... ARGS>
+    Core *RegisterFunction(std::function<T(ARGS...)> func) {
+        auto item = LauncherDict<T, ARGS...>().insert({op_name_, func});
         if (!item.second) {
             std::cout << op_name_ << ": Operator name exists." << std::endl;
         }
@@ -20,17 +20,18 @@ struct Core {
     }
 
     // interface for all operators
-    int operate(int a) {
-        auto item =
-            LauncherDict().find(this->op_name_); // TBD, convfwd is a core?
-        if (LauncherDict().end() != item) {
-            auto ret = item->second(a);
+    template <typename T, typename... ARGS> T operator()(ARGS... args) {
+        auto item = LauncherDict<T, ARGS...>().find(this->op_name_);
+        if (LauncherDict<T, ARGS...>().end() != item) {
+            auto ret = item->second(args...);
             return ret;
         }
     }
 
-    static LauncherDictionary &LauncherDict() {
-        static LauncherDictionary launcher_dictionary;
+    template <typename T, typename... ARGS>
+    static std::map<std::string, std::function<T(ARGS...)>> &LauncherDict() {
+        static std::map<std::string, std::function<T(ARGS...)>>
+            launcher_dictionary;
         return launcher_dictionary;
     }
 
