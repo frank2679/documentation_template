@@ -1,5 +1,5 @@
-INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src"
-"${CMAKE_SOURCE_DIR}/src/core")
+INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/library/src"
+"${CMAKE_SOURCE_DIR}/library/src/core")
 
 set(CMAKE_CXX_FLAGS "-std=c++14 -g")
 
