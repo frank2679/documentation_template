@@ -5,6 +5,9 @@
 // !!! need this define
 OperatorDatabase *OperatorDatabase::op_database_ = nullptr;
 
+std::string DatatypetoString<float>::data_type_name = "Float";
+std::string DatatypetoString<double>::data_type_name = "Double";
+
 OperatorDatabase *OperatorDatabase::GetOperatorDatabase() {
     if (nullptr == op_database_) {
         op_database_ = new OperatorDatabase();
@@ -17,6 +20,14 @@ void OperatorDatabase::DestroyOperatorDatabase() {
         delete op_database_;
         op_database_ = nullptr;
     }
+}
+
+template <typename T_DATA> std::string GetDataTypeName() {
+    std::string data_type_name;
+    if (std::is_same<T_DATA, float>::value) {
+        data_type_name = std::string("Float");
+    }
+    return data_type_name;
 }
 
 // operator name is the ID of real kernel

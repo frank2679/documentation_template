@@ -7,6 +7,8 @@
 #include <string>
 #include <utility>
 
+// TBD: complex and double complex
+
 class SublasException : public std::exception {
   public:
     SublasException(const std::string &msg) : _msg(msg) {}

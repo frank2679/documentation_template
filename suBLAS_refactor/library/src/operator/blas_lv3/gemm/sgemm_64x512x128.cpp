@@ -5,9 +5,10 @@
 REGISTER_OP(GEMM, Float, 64X512X128, 0)
     ->RegisterFunction(GEMMFloat64X512X128::Instance()->Compute());
 
-std::function<sublasStatus_t(int)> GEMMFloat64X512X128::Compute() {
-    return [](int a) {
-        std::cout << "hello GEMMFloat64X512X128, input value: " << a
+std::function<sublasStatus_t(COMPUTE_PARAMETER)>
+GEMMFloat64X512X128::Compute() {
+    return [](COMPUTE_PARAMETER) {
+        std::cout << "hello GEMMFloat64X512X128, input value: " << m
                   << std::endl;
         return SUBLAS_STATUS_SUCCESS;
     };

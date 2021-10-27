@@ -15,11 +15,10 @@ class sublasContext {
     sublasContext(sublasContext &&) = delete;
 
   public:
-    template <typename T_OP, typename T_DATA, typename T_ALGO, typename... ARGS>
-    sublasStatus_t Execute(const T_OP &op, const T_DATA &data_type,
-                           const T_ALGO &algo, ARGS... args) {
-        return OperatorDatabase::GetOperatorDatabase()->operator()(
-            op, data_type, algo, args...);
+    template <typename T_DATA, typename... ARGS>
+    sublasStatus_t Execute(const std::string &op_name, ARGS... args) {
+        return OperatorDatabase::GetOperatorDatabase()->operator()<T_DATA>(
+            op_name, args...);
     }
 
     // TBD: set stream

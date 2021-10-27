@@ -7,6 +7,8 @@
 #define SUBLAS_API extern "C" __attribute__((visibility("default")))
 #define SUBLAS_LOCAL extern "C" __attribute__((visibility("hidden")))
 
+#define PARAMETER_LIST(first, ...) first, ##__VA_ARGS__
+
 #define REGISTER_OP(OpName, DataTypeName, CoreName, CoreId)                    \
     static auto kOpRegister##OpName##DataTypeName##CoreName =                  \
         OperatorDatabase::GetOperatorDatabase()->RegisterOperator(             \
