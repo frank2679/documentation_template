@@ -10,6 +10,9 @@ Welcome to design_pattern_practice's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   src/design_pattern
+   src/cpp
+
 
 
 Indices and tables
