@@ -1,1 +1,0 @@
-int ConvFwdCrossDirect(int a);
