@@ -9,4 +9,5 @@ Design pattern
    :caption: Contents:
 
    design_pattern/observer
+   design_pattern/singleton
    
