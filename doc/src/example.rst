@@ -1,5 +1,5 @@
-Design pattern
-==============
+Example
+=======
 
 .. contents:: Content
     depth: 3
@@ -8,6 +8,6 @@ Design pattern
    :maxdepth: 2
    :caption: Contents:
 
-   design_pattern/observer
-   design_pattern/singleton
+   example/observer
+   example/singleton
    

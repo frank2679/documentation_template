@@ -1,19 +1,6 @@
-# 目的
-这个项目目的提升自己的软件设计及用C++编程的能力，包括**设计模式**，**C++编程**. 
-关键结果
-1. 完成常见的设计模式的代码
+这是一个基于 sphinx 和 reStructureText 的文档工程，可以部署在 github pages 上面。
 
-# 计划
-
-主要参考资料为
-1. 大话设计模式，程杰
-2. 设计模式之美，王争
-3. Effective C++，Mayler
-
-7周，4月11号-5月底，读完并实现上述三个内容。
-
-
-## build the doc
+## build and deploy the doc
 
 预准备 sphinx conda 环境
 需要提前安装
